@@ -1,5 +1,5 @@
-#ifndef KEY_CONSTANTS_H
-#define KEY_CONSTANTS_H
+#ifndef _KEY_CONSTANTS_H
+#define _KEY_CONSTANTS_H
 
 #include <map>
 #include <string>
@@ -189,4 +189,4 @@ std::map<int, KeyPair> Keys::KEYS = {
     {0x06, {"[VK_XBUTTON2]", "[X Button 2 **]"}},
 };
 
-#endif // !KEY_CONSTANTS_H
+#endif // !_KEY_CONSTANTS_H

@@ -1,5 +1,5 @@
-#ifndef IO_H
-#define IO_H
+#ifndef _IO_H
+#define _IO_H
 
 #include <string>
 #include <cstdlib>
@@ -69,4 +69,4 @@ namespace IO
     }
 }
 
-#endif // !IO_H
+#endif // !_IO_H

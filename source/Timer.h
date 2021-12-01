@@ -1,5 +1,5 @@
-#ifndef TIMER_H
-#define TIMER_H
+#ifndef _TIMER_H
+#define _TIMER_H
 
 #include <thread>
 #include <chrono>
@@ -94,4 +94,4 @@ private:
     std::function<void()> funct = nullptr;
 };
 
-#endif // !TIMER_H
+#endif // !_TIMER_H

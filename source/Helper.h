@@ -1,5 +1,5 @@
-#ifndef HELPER_H
-#define HELPER_H
+#ifndef _HELPER_H
+#define _HELPER_H
 
 #include <ctime>
 #include <string>
@@ -9,7 +9,7 @@
 namespace Helper
 {
     template<class T>
-    std::string ToString(const T &e)
+    inline std::string ToString(const T& e)
     {
         std::ostringstream s;
         s << e;
@@ -81,7 +81,7 @@ namespace Helper
         int d, m, y, H, M, S;
     };
 
-    void WriteAppLog(const std::string& ms)
+    inline void WriteAppLog(const std::string& ms)
     {
         std::ofstream file("App.log", std::ios::app);
         file << "[" << Helper::DateTime().GetDateTimeString() << "]"
@@ -90,4 +90,4 @@ namespace Helper
     }
 }
 
-#endif // !HELPER_H
+#endif // !_HELPER_H

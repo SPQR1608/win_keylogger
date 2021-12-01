@@ -1,10 +1,11 @@
-#include <iostream>
 #include <windows.h>
-#include "IO.h"
 #include "KeyHook.h"
+#include "Settings.h"
 
 int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow)
 {
+    Settings::Instance().Load("settings.ini");
+
     MSG Msg;
 
     InstallHook();
