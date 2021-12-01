@@ -4,7 +4,8 @@
 
 int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow)
 {
-    Settings::Instance().Load("settings.ini");
+    if (!Settings::Instance().Load("settings.ini"))
+        return -1;
 
     MSG Msg;
 
